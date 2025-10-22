@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option csharp_namespace = "TodoList.Grpc";
+
+package todo;
+
+service Todo {
+  rpc AddTodo (TodoRequest) returns (TodoResponse);
+  rpc GetTodo (TodoIdRequest) returns (TodoResponse);
+  rpc GetAllTodos (Empty) returns (TodoListResponse);
+  rpc UpdateTodo (UpdateTodoRequest) returns (TodoResponse);
+  rpc DeleteTodo (TodoIdRequest) returns (DeleteTodoResponse);
+}
+
+message TodoRequest {
+  string title = 1;
+}
+
+message TodoResponse {
+  string id = 1;
+  string title = 2;
+  bool isCompleted = 3;
+}
+
+message TodoIdRequest {
+  string id = 1;
+}
+
+message Empty {}
+
+message TodoListResponse {
+  repeated TodoResponse todos = 1;
+}
+
+message UpdateTodoRequest {
+  string id = 1;
+  string title = 2;
+  bool isCompleted = 3;
+}
+
+message DeleteTodoResponse {
+  bool success = 1;
+}

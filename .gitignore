@@ -1,0 +1,21 @@
+# Build Folders
+bin/
+obj/
+
+# Visual Studio
+*.user
+*.suo
+*.vsp
+*.vs/
+.vscode/
+
+# Logs
+*.log
+
+# Pacotes
+*.nupkg
+*.snupkg
+*.nuget
+
+# Others
+*.DS_Store
