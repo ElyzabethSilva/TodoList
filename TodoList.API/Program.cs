@@ -1,22 +1,22 @@
 using TodoList.API.Services;
-using TodoList.Infrastructure.Repositories;
-using TodoList.Core.Interfaces;
 using TodoList.Application.UseCases;
+using TodoList.Core.Interfaces;
+using TodoList.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddGrpc();
 
-// Registrar repositório e use case
 builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 builder.Services.AddScoped<AddTodoItemUseCase>();
+builder.Services.AddScoped<GetTodoUseCase>();
+builder.Services.AddScoped<GetAllTodosUseCase>();
+builder.Services.AddScoped<UpdateTodoUseCase>();
+builder.Services.AddScoped<DeleteTodoUseCase>();
 
 var app = builder.Build();
 
-// Mapear o serviço gRPC
 app.MapGrpcService<TodoService>();
-
-app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client.");
+app.MapGet("/", () => "Use a gRPC client to communicate with endpoints.");
 
 app.Run();
